@@ -1,0 +1,1 @@
+g++ -Wall -o anagram isAnagram.cpp -std=gnu++11
