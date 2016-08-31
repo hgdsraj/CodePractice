@@ -10,10 +10,36 @@
 
 void maxContSubarray(int * array, int len, int * out)
 {
-    int currentMax = 0;
+    int trueMax = 0;
+    int maxEndingHere = 0;
+    int begin;
+    int tempBegin;
+    int end;
+
+    for (int i = 0; i < len; i++)
+    {
+        maxEndingHere = maxEndingHere + array[i];
+
+        if (maxEndingHere < 0)
+        {
+            maxEndingHere = 0;
+            tempBegin = i+1;
+        }
+
+        if (trueMax < maxEndingHere)
+        {
+            trueMax = maxEndingHere;
+            begin = tempBegin;
+            end = i;
+        }
+    }
+
+    out[0] = begin;
+    out[1] = end;
+    out[2] = trueMax;
+    return;
 
 }
-
 
 
 
