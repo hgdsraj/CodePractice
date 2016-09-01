@@ -34,9 +34,12 @@ void maxContSubarray(int * array, int len, int * out)
         }
     }
 
-    out[0] = begin;
-    out[1] = end;
-    out[2] = trueMax;
+    if(begin < end)
+    {
+        out[0] = begin;
+        out[1] = end;
+        out[2] = trueMax;
+    }
     return;
 
 }
