@@ -24,7 +24,7 @@ int main ()
   printf("sizeof(char) is %d\n", (int)sizeof(char)); // 1
 
 
-  printf ("*c is: 0x%x\n", *c);
+  printf ("*c is: 0x%x\n", *c); //prints 0x76 in big, 0x10 in little
   if (*c == 0x10)
   {
     printf ("Underlying architecture is little endian. \n");

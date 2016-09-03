@@ -99,3 +99,32 @@ int main()
     return 0;
 
 }
+// Description: This public method is a wrapper method,
+  //              which calls the recursive heightR(Node *current) defined below.
+  //              It returns the height of the tree.
+int height(bNode<T> root) 
+{
+  return root == NULL ? 0 : heightR(root); // if root is null, height is 0, else find the height and return it
+}
+
+// Description: Computes the height of each node in the tree
+//              and stores the height of the node in the node's
+//              attribute "height" (see Node.h).
+  //              For example, if current is a leaf, its height is 1.
+  //              If current has a leaf as a left and as a right subtree,
+  //              its height is 2, etc... If current is NULL, its height is 0.
+int BST::heightR(Node *current) const
+{
+    int currHeight = 0;
+
+    if (current != NULL)
+    {
+    int leftH = heightR( current->getLeft() ); //get left height
+    int rightH = heightR( current->getRight() ); //gwt right height
+    int maxHeight = leftH > rightH ? leftH : rightH; //real height is the max of the two heights
+    currHeight = maxHeight + 1; // add one to height to include current
+    current->setHeight( currHeight ); //set it :)
+    }
+
+    return currHeight; //returns the height
+}

@@ -2,8 +2,9 @@
 #include <iostream>
 #include <exception>
 #include <cstring>
-struct strException : public std::exception
+class strException : public std::exception
 {
+public:
   virtual const char * what() const throw()
   {
     return "ll";
