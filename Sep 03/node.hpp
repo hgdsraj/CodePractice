@@ -1,4 +1,4 @@
-//node should hae
+//node should have insert delete, set data, print
 
 #ifndef __NODE_HPP__
 #define __NODE_HPP__
