@@ -43,7 +43,16 @@ node<T>::node(T data_set)
 template <typename T>
 void node<T>::print_in_order()
 {
+    std::cout << data << std::endl;
+    if (left!=nullptr)
+    {
+        left->print_in_order();
+    }
 
+    if (right!=nullptr)
+    {
+        right->print_in_order();
+    }
 }
 
 void node<T>::insert(T data)
