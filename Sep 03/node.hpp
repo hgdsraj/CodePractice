@@ -55,7 +55,30 @@ void node<T>::print_in_order()
     }
 }
 
-void node<T>::insert(T data)
+template <typename T>
+void node<T>::insert(T data_to_insert)
 {
-    if (data<=)
+    if (data<=data_to_insert)
+    {
+        if (right==nullptr)
+        {
+            right = new node<T>(data_to_insert);
+        }
+        else
+        {
+            left->insert(data_to_insert);
+        }
+    }
+    else
+    {
+        if (left==nullptr)
+        {
+            left = new node<T>(data_to_insert);
+        }
+        else
+        {
+            left->insert(data_to_insert);
+        }
+    }
+    }
 }
