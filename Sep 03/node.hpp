@@ -17,8 +17,10 @@ public:
     node(node<T> left = nullptr, node<T> right = nullptr);
 
     void print_in_order();
+    
     void insert(T data);
     void insert(node<T> data);
+
     void set_data(T data);
 };
 
