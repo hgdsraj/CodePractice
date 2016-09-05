@@ -29,11 +29,11 @@ bool binarySearchHelper(int * arr, int first, int last, int target)
 
     if(target < arr[mid])
     {
-        return binarySearchHelper(arr, first, mid, target);
+        return binarySearchHelper(arr, first, mid-1, target);
     }
     else
     {
-        return binarySearchHelper(arr, mid, last, target);
+        return binarySearchHelper(arr, mid+1, last, target);
     }
 
 }
