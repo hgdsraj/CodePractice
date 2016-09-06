@@ -1,3 +1,6 @@
+//find the first non repeating character in a string.
+
+//i.e.: "abi2hsbi2h" returns a
 
 #include <string>
 #include <iostream> //incase
