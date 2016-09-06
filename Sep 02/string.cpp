@@ -1,3 +1,5 @@
+//just an exception practice class
+
 #include <string>
 #include <iostream>
 #include <exception>
