@@ -43,8 +43,11 @@ bool checkSymmetricHelper(binaryNode * leftSubTree, binaryNode * rightSubTree)
     {
         return true;
     }
-
-    if (leftSubTree->data == rightSubTree->data)
+    else if(!leftSubTree || !rightSubTree)
+    {
+        return false;
+    }
+    else if (leftSubTree->data == rightSubTree->data)
     {
         checkSymmetricHelper(leftSubtree->left, rightSubTree->right);
         checkSymmetricHelper(leftSubtree->right, rightSubTree->left);
