@@ -1,3 +1,5 @@
+///prints all permutations of any combination of values in a string!
+
 #include <string>
 #include <iostream>
 using namespace std;

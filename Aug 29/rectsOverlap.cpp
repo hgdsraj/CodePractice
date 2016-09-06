@@ -1,4 +1,5 @@
 //rect helper
+//finds if two rectangles in the cartesian plane defined by an upperleft and lowerright corner overlap
 #include <iostream>
 
 class Point
