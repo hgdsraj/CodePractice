@@ -40,9 +40,10 @@ public:
 
     List();
     void merge(Node<T>* first, Node<T>* mid, Node<T>* last);
+    Node<T> * get_node(int node_number);
 
     void merge_sort();
-    void merge_sort_helper(Node<T>* first, Node<T>* mid, Node<T>* last);
+    void merge_sort_helper(int first, int last);
 
     void insert(T data);
     void populate();
@@ -70,17 +71,88 @@ List<T>::List()
     tail = nullptr;
     size = 0;
 }
+template <typename T>
+Node<T> * List<T>::get_node(int node_number)
+{
+    Node<T> * current = head;
+    for(int i = 0; i < node_number && current->next != nullptr; i++)
+    {
+        current = current->next;
+    }
+    return current;
+}
 
 template <typename T>
 void List<T>::merge(Node<T>* first, Node<T>* mid, Node<T>* last)
 {
+    List<T> * temp_list = new List<T>;
 
+    Node<T> * first_temp = first;
+    Node<T> * mid_temp = mid;
+    if(first == nullptr || last ==nullptr || mid == nullptr)
+    {
+        return;
+    }
+    while(first_temp != mid && mid_temp != last->next)
+    {
+        if(first_temp->data <= mid_temp->data)
+        {
+            temp_list->insert(first_temp->data);
+            first_temp = first_temp->next;
+        }
+        else
+        {
+            temp_list->insert(mid_temp->data);
+            mid_temp = mid_temp->next;
+        }
+    }
+
+
+    while(first_temp != mid)
+    {
+        temp_list->insert(first_temp->data);
+        first_temp = first_temp->next;
+    }
+
+    while(mid_temp != last->next)
+    {
+        temp_list->insert(mid_temp->data);
+        mid_temp = mid_temp->next;
+    }
+
+    Node<T> * temp_list_iterator = temp_list->head;
+    while(temp_list_iterator)
+    {
+        first->data = temp_list_iterator->data;
+        first = first->next;
+        temp_list_iterator = temp_list_iterator->next;
+    }
 }
 
 template <typename T>
-void List<T>::merge_sort_helper(int first, int mid, int last)
+void List<T>::merge_sort_helper(int first, int last)
 {
-    int mid = size/2;
+    if(last<=first)
+    {
+        return;
+    }
+    Node<T> * first_node = get_node(first);
+    if(first_node == nullptr)
+    {
+        return;
+    }
+    int mid = first + (last-first)/2;
+
+    Node<T> * mid_node = get_node(mid+1);
+    Node<T> * last_node = get_node(last);
+    if(mid_node == nullptr || last_node == nullptr)
+    {
+        return;
+    }
+    std::cout << first_node->data << " " << mid_node->data << " " << last_node->data << std::endl;
+    merge_sort_helper(first,mid);
+    merge_sort_helper(mid+1,last);
+    merge(first_node,mid_node,last_node);
 }
 
 template <typename T>
@@ -90,7 +162,7 @@ void List<T>::merge_sort()
     {
         return;
     }
-    merge_sort_helper(head)
+    merge_sort_helper(0,size-1);
 }
 
 template <typename T>
@@ -143,6 +215,7 @@ void List<T>::insert(T data)
     {
         tail->next = new Node<T>;
         tail->next->data = data;
+        tail = tail->next;
     }
     catch(std::exception& e)
     {
@@ -168,7 +241,11 @@ int main()
     }
 
     my_list->populate();
+    std::cout << my_list << std::endl;
 
+    std::cout << "SORTING! " << std::endl;
+    my_list->merge_sort();
+    std::cout << "SORTED!" << std::endl;
     std::cout << my_list << std::endl;
     return 0;
 
